@@ -647,7 +647,7 @@ contract MasterChef is Ownable {
     }
 
     // Return reward multiplier over the given _from to _to block.
-    function getMultiplier(uint256 _from, uint256 _to) public view returns (uint256) {
+    function getMultiplier(uint256 _from, uint256 _to) public pure returns (uint256) {
         return _to.sub(_from).mul(BONUS_MULTIPLIER);
     }
 
@@ -662,7 +662,7 @@ contract MasterChef is Ownable {
             uint256 nsfdReward = multiplier.mul(rewardPerBlock).mul(pool.allocPoint).div(totalAllocPoint);
             accNSFDPerShare = accNSFDPerShare.add(nsfdReward.mul(1e12).div(lpSupply));
         }
-        return user.amount.mul(accnsfdPerShare).div(1e12).sub(user.rewardDebt);
+        return user.amount.mul(accNSFDPerShare).div(1e12).sub(user.rewardDebt);
     }
 
     // Update reward variables for all pools. Be careful of gas spending!
